@@ -2,8 +2,8 @@ import os
 import flask
 import logging
 import werkzeug
-import mxm
-import Song
+from mxm import *
+from Song import *
 
 app = flask.Flask(__name__)
 app.config['UPLOAD_FOLDER'] = '/tmp/'
@@ -19,7 +19,7 @@ def helloAndre():
   # tracks = TRACK.search(q='Rick Astley Never Gonna Give You Up')
   # for k in range(min(3, len(tracks))):
   #   print tracks[k]
- #/return "Hello MEEEEE!"
+  #/return "Hello MEEEEE!"
   # return str(tracks)
   song = makeSong('Disturbed', 'Criminal')
   return str(song)
