@@ -32,6 +32,7 @@ def makeSong(artist, name):
 			getInfo
 		and setWhatever
 	'''
+	name = rmParends(name)
 	songs = searchQuery(artist, name)
 	if len(songs) < 1:
 		return None
@@ -85,13 +86,13 @@ def getInfo(song):
 		# print key, '\t\t', data.get(key)
 	# print '[*] SONG INFO >>> ', info
 	setLyrics(info)
-	info[TRACK_NAME] = cleanName(info)
+	# info[TRACK_NAME] = clean(info, TRACK_NAME)
 	print '[*] >>> INFO:', info
 
 	return info
 
-def cleanName(info):
-	name = info[TRACK_NAME]
+def clean(info, kind):
+	stuff = info[kind]
 	return rmParends(name)
 
 def rmParends(name):
