@@ -11,7 +11,7 @@ def findLyrics(artist, song):
 	# lyrics = unHTMLize(htly)
 	# html = urllib.urlopen(lwURL)
 
-	return lyrics
+	return (lyrics==None) ? "No lyrics found :(" : lyrics
 
 # def findLyrics(artist, song):
 # 	html = getHTML(artist, song)
@@ -98,8 +98,10 @@ def isoLyrics(url):
 	j = json.loads(j)
 	j = j["query"]["pages"]
 	j = j.itervalues().next()
-	j = j["revisions"][0]['*']
-
+	try:
+		j = j["revisions"][0]['*']
+	except:
+		return None
 	startI = j.find(beg)
 	endI = j.find(end)
 	lyrics = j[startI+len(beg):endI]
