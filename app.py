@@ -22,7 +22,7 @@ def helloAndre():
   #/return "Hello MEEEEE!"
   # return str(tracks)
   song = makeSong('Disturbed', 'Criminal')
-  return str(song)
+  return str(song).replace('\n', '<br />')
 
 
 @app.route('/dropbox')
