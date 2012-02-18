@@ -78,7 +78,8 @@ def bridgeEchoId(id):
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
-  return flask.send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+  return flask.send_from_directory(app.config['UPLOAD_FOLDER'], filename,
+                                   as_attachment=True)
 
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
