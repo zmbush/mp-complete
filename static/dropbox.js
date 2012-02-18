@@ -43,11 +43,11 @@ function handleFiles(files){
           break;
         case 4:
           text = xhr.responseText
+          $('#upl' + i).hide()
           as = text.split(',')
           // document.location.href = '/echo_id/' + text
           location.href = "/bridge/" + as[0] + "/" + as[1] + '/' + as[2]
           // $(".page").append("<a href=\"" + xhr.responseText + "\">Download</a>")
-          $('#upl' + i).hide()
           break;
       }
     }
