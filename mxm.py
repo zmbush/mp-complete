@@ -85,12 +85,16 @@ def getInfo(song):
 		# print key, '\t\t', data.get(key)
 	# print '[*] SONG INFO >>> ', info
 	setLyrics(info)
-	info[TRACK_NAME] = rmParends(info)
+	info[TRACK_NAME] = cleanName(info)
+	print '[*] >>> INFO:', info
 
 	return info
 
-def rmParends(info):
+def cleanName(info):
 	name = info[TRACK_NAME]
+	return rmParends(name)
+
+def rmParends(name):
 	cleanName = []
 	flag = True
 	for c in name:
