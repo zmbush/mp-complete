@@ -46,7 +46,7 @@ def recieveDroppedFile():
   flask.redirect(flask.url_for('uploaded_file', filename=filename))
   API_KEY = 'PQU43GTTUDQXJ4VGA'
   url = 'http://developer.echonest.com/api/v4/track/upload?api_key=' + API_KEY
-  data = 'url=http://mp-complete.herokuapp.com/uploads' + filename
+  data = 'url=http://mp-complete.herokuapp.com/uploads/' + filename
   page = urllib2.urlopen(url, data).read()
   print "Recieved page:"
   print page
