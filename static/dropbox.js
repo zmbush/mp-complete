@@ -24,33 +24,35 @@ function drop(evt){
 }
 
 function handleFiles(files){
-  for(var i = 0; i < files.length; i++){
-    file = files[i]
-    $('#upload-area').append("<div id='upl" + i + "'>Uploading: " + file.name + '</div>')
-     
-    // begin the read operation
-    var fd = new FormData();
-    fd.append("uploaded_file", file);
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/file_upload", true);
-    xhr.onreadystatechange = function(){
-      switch(xhr.readyState){
-        case 1:
-          break;
-        case 2:
-          break;
-        case 3:
-          break;
-        case 4:
-          text = xhr.responseText
-          $('#upl' + i).hide()
+  //for(var i = 0; i < files.length; i++){
+  file = files[0]
+  $('#upload-area').append("<div id='upload'>Uploading: " + file.name + '</div>')
+   
+  // begin the read operation
+  var fd = new FormData();
+  fd.append("uploaded_file", file);
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/file_upload", true);
+  xhr.onreadystatechange = function(){
+    switch(xhr.readyState){
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      case 4:
+        text = xhr.responseText
+        if (xhr.status == 200) {
+          $('#upload').hide()
           as = text.split(',')
           // document.location.href = '/echo_id/' + text
           location.href = "/bridge/" + as[0] + "/" + as[1] + '/' + as[2]
           // $(".page").append("<a href=\"" + xhr.responseText + "\">Download</a>")
-          break;
-      }
+        }
+        break;
     }
-    xhr.send(fd);
   }
+  xhr.send(fd);
+  //}
 }
