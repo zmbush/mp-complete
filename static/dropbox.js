@@ -31,7 +31,12 @@ function handleFiles(files){
     var fd = new FormData();
     fd.append("uploaded_file", file);
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/file_upload");
+    xhr.open("POST", "/file_upload", true);
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState == 4){
+        $(".page").append("<a href=\"" + xhr.responseText + "\">Download</a>")
+      }
+    }
     xhr.send(fd);
   }
 }

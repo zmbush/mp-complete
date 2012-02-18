@@ -2,6 +2,8 @@ import os
 import flask
 import logging
 import werkzeug
+import urllib2
+import urllib
 from mxm import *
 from Song import *
 
@@ -35,9 +37,24 @@ def dropboxPage():
 @app.route('/file_upload', methods=['GET', 'POST'])
 def recieveDroppedFile():
   file = flask.request.files['uploaded_file']
-  filename = werkzeug.secure_filename(file.filename)
-  file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-  return flask.redirect(flask.url_for('uploaded_file', filename=filename))
+  filename = werkzeug.secure_filename(file.filename) 
+  path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+  print path
+  file.save(path)
+  flask.redirect(flask.url_for('uploaded_file', filename=filename))
+  API_KEY = 'PQU43GTTUDQXJ4VGA'
+  url = 'http://developer.echonest.com/api/v4/track/upload'
+  values = {'api_key' : API_KEY,
+          'url' : 'http://mp-complete.herokuapp.com/uploads' + filename }
+  data = urllib.urlencode(values)
+  page = urllib2.urlopen(url, data)
+  return page.read()
+  return '/uploads/' + filename
+
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+  return flask.send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
