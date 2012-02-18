@@ -6,6 +6,7 @@ import urllib2
 import urllib
 import subprocess
 import eyedadata
+import json
 import eyeD3.tag as TAG
 from mxm import *
 from Song import *
@@ -80,6 +81,9 @@ def bridgeTheGap(artist, song, filename):
     # return f
   except AttributeError as g:
     return json.dumps({'status':'error', 'message':'Could not identify song. :('})
+  except ValueError as h:
+    return json.dumps({'status':'error', 'message':'File uploaded is not mp3. :('})
+
     # return g
     # print "SOMETHING WENT WRONG :("
   # print "FILENAME: " + filename
