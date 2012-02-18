@@ -28,7 +28,9 @@ def helloAndre():
   #/return "Hello MEEEEE!"
   # return str(tracks)
   song = makeSong('Disturbed', 'Criminal')
-  return str(song).replace('\n', '<br />')
+  if song != None:
+    return str(song).replace('\n', '<br />')
+  return ":("
 
 
 @app.route('/dropbox')

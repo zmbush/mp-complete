@@ -20,6 +20,7 @@ ARTIST_ID = 'artist_id'
 LYRICS_ID = 'lyrics_id'
 ALBUM_ART = 'album_coverart_100x100'
 
+FIRST = 0
 
 TRACK_KEYS = [ALBUM_NAME, ALBUM_ID, TRACK_NAME, TRACK_ID, ARTIST_NAME, ARTIST_ID, LYRICS_ID, ALBUM_ART]
 
@@ -32,12 +33,29 @@ def makeSong(artist, name):
 		and setWhatever
 	'''
 	songs = searchQuery(artist, name)
-	songInfo = getInfo(songs[0])
+	if len(songs) < 1:
+		return None
+	songInfo = getInfo(songs[FIRST])
 	song = Song()
 	for key in songInfo.keys():
 		song.setWhatever(key, songInfo.get(key))
 	# print '[*] AFTER SETTING', song
 	return song
+
+def makeSong(echoID):
+	print '[*] >>> ID:', echoID
+
+	try:
+		track = Track(echoID, echonest=True)
+	except:
+		print "[*] >>> SONG NOT FOUND :("
+		return None
+	songInfo = getInfo(track)
+	song = Song()
+	for key in songInfo.keys():
+		song.setWhatever(key, songInfo.get(key))
+	# print '[*] AFTER SETTING', song
+	return song	
 
 
 def searchQuery(artist, name):

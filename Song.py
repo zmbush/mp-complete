@@ -31,6 +31,9 @@ class Song(object):
 		self.art = ' '
 		self.year = ' '
 	
+	def htmlStr(self):
+		return str(self).replace('\n', '<br />')
+
 	def __str__(self):
 		data = []
 		data.append('Name:\t')
