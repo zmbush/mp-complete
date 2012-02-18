@@ -38,7 +38,7 @@ function handleFiles(files){
         as = text.split(',')
         // document.location.href = '/echo_id/' + text
         document.location.href = "/bridge/" + as[0] + "/" + as[1]
-        $(".page").append("<a href=\"" + xhr.responseText + "\">Download</a>")
+        // $(".page").append("<a href=\"" + xhr.responseText + "\">Download</a>")
       }
     }
     xhr.send(fd);
