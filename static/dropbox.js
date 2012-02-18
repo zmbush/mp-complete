@@ -47,7 +47,14 @@ function handleFiles(files){
           $('#upload').remove()
           as = text.split(',')
           // document.location.href = '/echo_id/' + text
-          location.href = "/bridge/" + escape(as[0]) + "/" + escape(as[1]) + '/' + escape(as[2])
+          request_url = "/bridge/" + escape(as[0]) + "/" + escape(as[1]) + '/' + escape(as[2])
+          $.ajax({
+            url: request_url,
+            type: 'json',
+            success: function(text){
+              alert(text.status)
+            }
+          })
           // $(".page").append("<a href=\"" + xhr.responseText + "\">Download</a>")
         }
         break;
