@@ -1,6 +1,7 @@
 import os
 import flask
 import logging
+import werkzeug
 
 app = flask.Flask(__name__)
 app.config['UPLOAD_FOLDER'] = '/tmp/'
@@ -32,9 +33,9 @@ def dropboxPage():
 @app.route('/file_upload', methods=['GET', 'POST'])
 def recieveDroppedFile():
   file = flask.request.files['uploaded_file']
-  filename = secure_filename(file.filename)
+  filename = werkzeug.secure_filename(file.filename)
   file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-  return file.filename
+  return flask.redirect(flask.url_for('uploaded_file', filename=filename))
 
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
