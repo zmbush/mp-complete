@@ -1,7 +1,7 @@
-.np-Complete
+.mp-Complete
 ===========
 
-.np-Complete is a simple web application to fix the metadata on songs. Simply
+.mp-Complete is a simple web application to fix the metadata on songs. Simply
 drop an mp3 file onto the webpage, and get back the repaired file!
 
 Our Files
