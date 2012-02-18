@@ -52,6 +52,8 @@ def recieveDroppedFile():
 
 @app.route('/bridge/<artist>/<song>')
 def bridgeTheGap(artist, song):
+  print "Artist: " + artist
+  print "Song: " + song
   song = makeSong(artist, song)
   return str(song).replace("\n", "<br />")
 
