@@ -8,6 +8,8 @@ from mxm import *
 from Song import *
 
 app = flask.Flask(__name__)
+app.debug = True
+flask.use_debugger = True
 app.config['UPLOAD_FOLDER'] = '/tmp/'
 import sys
 
