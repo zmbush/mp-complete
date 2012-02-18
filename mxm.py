@@ -85,6 +85,7 @@ def getInfo(song):
 		# print key, '\t\t', data.get(key)
 	# print '[*] SONG INFO >>> ', info
 	setLyrics(info)
+	info[TRACK_NAME] = rmParends(info)
 
 	return info
 
