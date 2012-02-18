@@ -68,7 +68,7 @@ class Song(object):
 			self.setArt(value)
 		else:
 			#DONT KNOW WHAT TO DO
-			print '[*] >>> TRYING TO ADD', key, value
+			print '[*] >>> FAILED TO ADD', key, value
 
 	def setName(self, name):
 		'''

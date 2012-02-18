@@ -15,7 +15,7 @@ def updateFile(filename, song):
 		return e
 		print '[*] >>> TypeError', e
 		return False
-	except eyeD3.tag.TagException as f:
+	except TAG.TagException as f:
 		return f
 		print '[*] >>> TagException', f
 		return False

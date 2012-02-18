@@ -2,11 +2,11 @@
 
 import os
 import sys
-import track as TRACK
-import artist as ARTIST
-import tracking as TRACKING
+import musixmatch.track as TRACK
+import musixmatch.artist as ARTIST
+import musixmatch.tracking as TRACKING
 from Song import Song
-import lyrics as LYRICS
+import musixmatch.lyrics as LYRICS
 
 
 # WANTED_KEYS = {'album_name':'Album', 'track_name':'Track', 'artist_name':'Artist'}
