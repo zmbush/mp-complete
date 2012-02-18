@@ -47,7 +47,7 @@ def alnumOnly(song):
 	return ''.join(name)
 
 def findURL(xml):
-	soup = BeautifulSoup.BeautifulSoup(xml)
+	soup = bs.BeautifulSoup.BeautifulSoup(xml)
 	u = soup.find('url').contents
 	u = u[0]
 	return u
