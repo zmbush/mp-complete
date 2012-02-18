@@ -6,7 +6,7 @@ import track as TRACK
 import artist as ARTIST
 import tracking as TRACKING
 from Song import Song
-from lyrics import findLyrics
+import lyrics as LYRICS
 
 
 # WANTED_KEYS = {'album_name':'Album', 'track_name':'Track', 'artist_name':'Artist'}
@@ -19,6 +19,7 @@ ARTIST_NAME = 'artist_name'
 ARTIST_ID = 'artist_id'
 LYRICS_ID = 'lyrics_id'
 ALBUM_ART = 'album_coverart_100x100'
+LYRICS_BODY = 'lyrics_body'
 
 FIRST = 0
 
@@ -79,17 +80,21 @@ def getInfo(song):
 	data = song.__dict__
 	info = {}
 	for key in SONG_KEYS:
-		# if key == 'lyrics_id':
-			# info[key] = song.lyrics()
-			# break;
+		if key == LYRICS_ID:
+			info[key] = getLyrics(song)
+			break;
 		info[key] = data.get(key)
 		# print key, '\t\t', data.get(key)
 	# print '[*] SONG INFO >>> ', info
-	setLyrics(info)
+	
+	# setLyrics(info)
 	# info[TRACK_NAME] = clean(info, TRACK_NAME)
 	print '[*] >>> INFO:', info
 
 	return info
+
+def getLyrics(track):
+	return track.lyrics()[LYRICS_BODY]
 
 def clean(info, kind):
 	stuff = info[kind]
@@ -110,11 +115,8 @@ def rmParends(name):
 def setLyrics(info):
 	artist = info[ARTIST_NAME]
 	name = info[TRACK_NAME]
-	lyrics = findLyrics(artist, name)
+	lyrics = LYRICS.findLyrics(artist, name)
 	info[LYRICS_ID] = lyrics
-
-def getLyrics(track):
-	return track.lyrics()
 
 def showAllInfo(song):
 	'''
@@ -145,6 +147,7 @@ if __name__ == "__main__":
 
 	# for s in ts:
 	# 	print str(s)
+	print showAllInfo(ts[0])
 	print(ts[0])	
 
 """
