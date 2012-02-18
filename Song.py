@@ -1,3 +1,12 @@
+ALBUM_NAME = 'album_name'
+ALBUM_ID = 'album_id'
+TRACK_ID = 'track_id'
+TRACK_NAME = 'track_name'
+ARTIST_NAME = 'artist_name'
+ARTIST_ID = 'artist_id'
+LYRICS_ID = 'lyrics_id'
+ALBUM_ART = 'album_coverart_100x100'
+
 class Song(object):
 	'''
 	Class to store Song info in a manageable format.
@@ -11,8 +20,8 @@ class Song(object):
 		album
 		lyrics
 		art
-		year (album)
 	'''
+
 
 	def __init__(self):
 		self.name = ' '
@@ -33,33 +42,30 @@ class Song(object):
 		data.append('Album:\t')
 		data.append((self.album + '\n'))
 
-		data.append('Year:\t')
-		data.append((self.year + '\n'))
-
 		data.append('Art:\t')
 		data.append((self.art + '\n'))
 
 		data.append('Lyrics:\n')
-		data.append((self.lyrics + '\n'))
+		data.append(self.lyrics + '\n')
 
 		return ''.join(data)
 
 	'''SETTERS'''
 	def setWhatever(self, key, value):
 		# print '[*] SETTING ', key, value
-		if key == 'Album':
+		if key == ALBUM_NAME:
 			self.setAlbum(value)
-		elif key == 'Artist':
+		elif key == ARTIST_NAME:
 			self.setArtist(value)
-		elif key == 'Track':
+		elif key == TRACK_NAME:
 			self.setName(value)
-		elif key == 'Lyrics':
+		elif key == LYRICS_ID:
 			self.setLyrics(value)
-		elif key == 'Art':
+		elif key == ALBUM_ART:
 			self.setArt(value)
 		else:
 			#DONT KNOW WHAT TO DO
-			print 'NOTHING!!!'
+			print '[*] >>> TRYING TO ADD', key, value
 
 	def setName(self, name):
 		'''
