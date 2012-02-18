@@ -88,6 +88,19 @@ def getInfo(song):
 
 	return info
 
+def rmParends(info):
+	name = info[track_name]
+	cleanName = []
+	flag = True
+	for c in name:
+		if c == '(':
+			flag = False
+		elif c == ')':
+			flag = True
+		elif flag:
+			cleanName.append(c)
+	return ''.join(cleanName)
+
 def setLyrics(info):
 	artist = info[ARTIST_NAME]
 	name = info[TRACK_NAME]
