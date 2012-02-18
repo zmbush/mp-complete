@@ -5,7 +5,10 @@ import eyeD3.tag as TAG
 
 def updateFile(filename, song):
 	tag = eyeD3.Tag()
-	tag.link(filename)
+	try:
+		tag.link(filename)
+	except TypeError:
+		return False
 	updateLyrics(tag, song.getLyrics())
 	updateName(tag, song.getName())
 	updateArtist(tag, song.getArtist())
