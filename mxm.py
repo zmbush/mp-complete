@@ -42,13 +42,14 @@ def makeSong(artist, name):
 	# print '[*] AFTER SETTING', song
 	return song
 
-def makeSong(echoID):
+def IDSong(echoID):
 	print '[*] >>> ID:', echoID
 
 	try:
-		track = Track(echoID, echonest=True)
-	except:
+		track = TRACK.Track(echoID, echonest=True)
+	except Exception as e:
 		print "[*] >>> SONG NOT FOUND :("
+		print '[*] >>> e:', e
 		return None
 	songInfo = getInfo(track)
 	song = Song()
