@@ -53,7 +53,11 @@ function handleFiles(files){
             type: 'GET',
             dataType: 'json',
             success: function(text){
-              alert(text.status)
+              if(text.status == "error"){
+                alert(text.message)
+              else{
+                document.location.href = text.message;
+              }
             }
           })
           // $(".page").append("<a href=\"" + xhr.responseText + "\">Download</a>")
