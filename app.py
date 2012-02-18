@@ -6,7 +6,7 @@ from mxm import *
 from Song import *
 
 app = flask.Flask(__name__)
-app.config['UPLOAD_FOLDER'] = '/tmp/'
+app.config['UPLOAD_FOLDER'] = 'tmp/'
 import sys
 
 
@@ -36,8 +36,9 @@ def dropboxPage():
 def recieveDroppedFile():
   file = flask.request.files['uploaded_file']
   filename = werkzeug.secure_filename(file.filename)
-  file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-  return flask.redirect(flask.url_for('uploaded_file', filename=filename))
+  path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+  file.save(path)
+  return path
 
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
