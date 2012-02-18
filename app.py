@@ -48,6 +48,8 @@ def recieveDroppedFile():
   url = 'http://developer.echonest.com/api/v4/track/upload?api_key=' + API_KEY
   data = 'url=http://mp-complete.herokuapp.com/uploads/' + filename +          \
   "&wait=false"
+  print "Sending request to:", url
+  print "With data:", data
   page = urllib2.urlopen(url, data).read()
   print "Recieved page:"
   print page
