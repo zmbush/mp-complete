@@ -8,58 +8,25 @@ def findLyrics(artist, song):
 	xml = getXML(artist, song)
 	lwURL = findURL(xml)
 	lyrics = isoLyrics(lwURL)
-	# lyrics = unHTMLize(htly)
-	# html = urllib.urlopen(lwURL)
 
 	return "No lyrics found :(" if (lyrics==None) else lyrics
 
-# def findLyrics(artist, song):
-# 	html = getHTML(artist, song)
-# 	htly = isoLyrics(html)
-# 	lyrics = unHTMLize(htly)
-# 	return lyrics
 
 begtag = '<!-- start of lyrics -->'
 endtag = '<!-- end of lyrics -->'
-# begin = "'url':'"
+
 
 def getXML(artist, song):
 	lwurl = makeURL1(artist, song)
 	# count = 5
 	xml = urllib.urlopen(lwurl)
-	
-	# while count>0:
-	# 	try:
-	# 	except IOError as e:
-	# 		print '[*] >>> SOMETHING WENT WRONG!!!'
-	# 		count -= 1
-
 	xml = xml.read()
 	return xml
 
-# def getHTML(artist, song):
-# 	azurl = makeURL(artist, song)
-# 	count = 5
-# 	while count>0:
-# 		try:
-# 			html = urllib.urlopen(azurl)
-# 		except IOError e:
-# 			print '[*] >>> SOMETHING WENT WRONG!!!'
-# 			count -= 1
-
-# 	html = html.read()
-# 	return html
-
-
 def makeURL1(artist, song):
 	lwurl = 'http://lyrics.wikia.com/api.php?artist=' + srchStr(artist) + '&song=' + srchStr(song) + '&fmt=xml'
-	# print '[*] >>> URL=', azurl
 	return lwurl
 
-# def makeURL(artist, song):
-# 	azurl = 'http://www.azlyrics.com/lyrics/' + alnumOnly(artist.lower()) + '/' + alnumOnly(song.lower()) + '.html'
-# 	# print '[*] >>> URL=', azurl
-# 	return azurl
 
 def srchStr(lit):
 	'''
