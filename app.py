@@ -5,9 +5,11 @@ import werkzeug
 import urllib2
 import urllib
 import subprocess
+import eyedadata
 from mxm import *
 from Song import *
 from echonest import track
+
 
 app = flask.Flask(__name__)
 app.debug = True
@@ -59,7 +61,7 @@ def bridgeTheGap(artist, song, filename):
   print "Song: " + song
   song = makeSong(artist, song)
   path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-  updateFile(path, song)
+  eyedadata.updateFile(path, song)
   flask.redirect('/uploads/' + filename)
   return song.htmlStr()
 
