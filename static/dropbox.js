@@ -44,7 +44,7 @@ function handleFiles(files){
       case 4:
         text = xhr.responseText
         if (xhr.status == 200) {
-          $('#upload').hide()
+          $('#upload').remove()
           as = text.split(',')
           // document.location.href = '/echo_id/' + text
           location.href = "/bridge/" + escape(as[0]) + "/" + escape(as[1]) + '/' + escape(as[2])
