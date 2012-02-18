@@ -11,7 +11,7 @@ def findLyrics(artist, song):
 	# lyrics = unHTMLize(htly)
 	# html = urllib.urlopen(lwURL)
 
-	return (lyrics==None) ? "No lyrics found :(" : lyrics
+	return "No lyrics found :(" if (lyrics==None) else lyrics
 
 # def findLyrics(artist, song):
 # 	html = getHTML(artist, song)
