@@ -5,12 +5,13 @@ import mxm
 import Song
 
 app = flask.Flask(__name__)
+app.config['UPLOAD_FOLDER'] = '/tmp/'
 import sys
 
 
 @app.route('/')
 def hello():
-  return 'Hello World!'
+  return '<a href="dropbox">Drag and Drop test</a><br /><a href="andre">Andre\'s code</a>'
 
 @app.route('/andre')
 def helloAndre():
@@ -25,9 +26,17 @@ def helloAndre():
 
 @app.route('/dropbox')
 def dropboxPage():
-  print "boo"
+  error = None
   returnVal = flask.render_template('dropbox.html', error=error)
+  return returnVal
 
+
+@app.route('/file_upload', methods=['GET', 'POST'])
+def recieveDroppedFile():
+  file = flask.request.files['uploaded_file']
+  filename = secure_filename(file.filename)
+  file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+  return file.filename
 
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))

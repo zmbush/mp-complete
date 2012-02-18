@@ -40,6 +40,7 @@ except ImportError:
 # MusixMatch API key, should be an environment variable
 MUSIXMATCH_API_KEY = None
 if('MUSIXMATCH_API_KEY' in os.environ):
+    print "boo"
     MUSIXMATCH_API_KEY = os.environ['MUSIXMATCH_API_KEY']
 
 # details of the website to call
