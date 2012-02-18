@@ -3,6 +3,11 @@ import flask
 import logging
 
 app = flask.Flask(__name__)
+import sys
+import track as TRACK
+import artist as ARTIST
+import tracking as TRACKING
+
 
 @app.route('/')
 def hello():
@@ -10,7 +15,11 @@ def hello():
 
 @app.route('/andre')
 def helloAndre():
-  return "Hello MEEEEE!"
+  tracks = TRACK.search(q="Distured In The Fire")
+  for k in range(min(3, len(tracks))):
+    print tracks[k]
+ #/return "Hello MEEEEE!"
+  return str(tracks)
 
 @app.route('/dropbox')
 def dropboxPage():
