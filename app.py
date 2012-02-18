@@ -62,6 +62,7 @@ def bridgeTheGap(artist, song, filename):
   song = makeSong(artist, song)
   path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
   eyedadata.updateFile(path, song)
+  print "FILENAME: " + filename
   filename = rename(filename, song.getName())
 
   return flask.redirect('/uploads/' + filename)
@@ -71,6 +72,7 @@ def rename(filename, newName):
   path = filename.split('/')
   path[-1] = newName + '.mp3'
   newfilename = ''.join(path)
+  print 'NEWFILENAME:', newfilename
   os.rename(filename, newfilename)
   return newfilename
 
