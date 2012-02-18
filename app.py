@@ -17,7 +17,7 @@ from echonest import track
 app = flask.Flask(__name__)
 app.debug = True
 flask.use_debugger = True
-app.config['UPLOAD_FOLDER'] = '/'
+app.config['UPLOAD_FOLDER'] = '~/'
 import sys
 
 
