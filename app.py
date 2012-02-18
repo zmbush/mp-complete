@@ -6,6 +6,7 @@ import urllib2
 import urllib
 import subprocess
 import eyedadata
+import eyeD3.tag as TAG
 from mxm import *
 from Song import *
 from echonest import track
@@ -55,18 +56,36 @@ def recieveDroppedFile():
   retval = [newTrack.artist, newTrack.title, filename]
   return ','.join(retval)
 
+@app.route('/error')
+def displayError():
+  print
+  pass
+
 @app.route('/bridge/<artist>/<song>/<filename>')
 def bridgeTheGap(artist, song, filename):
   print "Artist: " + artist
   print "Song: " + song
   song = makeSong(artist, song)
   path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-  if not eyedadata.updateFile(path, song):
-    print "SOMETHING WENT WRONG :("
+  
+  try:
+    if song == None:
+      raise AttributeError
+    eyedadata.updateFile(path, song)
+  except TypeError as e:
+    return json.dumps({'status':'error', 'message':e})
+    # return e
+  except TAG.TagException as f:
+    return json.dumps({'status':'error', 'message':'Could not write ID3 tags. :('})
+    # return f
+  except AttributeError as g:
+    return json.dumps({'status':'error', 'message':'Could not identify song. :('})
+    # return g
+    # print "SOMETHING WENT WRONG :("
   # print "FILENAME: " + filename
   filename = rename(filename, song.getName())
-
-  return flask.redirect('/uploads/' + filename)
+  return json.dumps({'status':'success', 'message':'/uploads/'+filename})
+  # return flask.redirect('/uploads/' + filename)
   # return song.htmlStr()
 
 def rename(filename, newName):
