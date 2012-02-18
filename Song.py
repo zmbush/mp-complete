@@ -15,43 +15,51 @@ class Song(object):
 	'''
 
 	def __init__(self):
-		pass
+		self.name = ' '
+		self.artist = ' '
+		self.album = ' '
+		self.lyrics = ' '
+		self.art = ' '
+		self.year = ' '
 	
-	data = []
 	def __str__(self):
-		data[0] = 'Name:\t'
-		data[1] = (name + '\n')
+		data = []
+		data.append('Name:\t')
+		data.append((self.name + '\n'))
 
-		data[2] = 'Artist:\t'
-		data[3] = (artist + '\n')
+		data.append('Artist:\t')
+		data.append((self.artist + '\n'))
 
-		data[4] = 'Album:\t'
-		data[5] = (album + '\n')
+		data.append('Album:\t')
+		data.append((self.album + '\n'))
 
-		data[6] = 'Year:\t'
-		data[7] = (year + '\n')
+		data.append('Year:\t')
+		data.append((self.year + '\n'))
 
-		data[8] = 'Art:\t'
-		data[9] = (art + '\n')
+		data.append('Art:\t')
+		data.append((self.art + '\n'))
 
-		data[10] = 'Lyrics:\n'
-		data[11] = (lyrics + '\n')
+		data.append('Lyrics:\n')
+		data.append((self.lyrics + '\n'))
+
+		return ''.join(data)
 
 	'''SETTERS'''
 	def setWhatever(self, key, value):
-		if key == 'album_name':
-			setAlbum(value)
-		elif key == 'artist_name':
-			setArtist(value)
-		elif key == 'track_name':
-			setName(value)
-		elif key == 'lyrics':
-			setLyrics(value)
-		elif key == 'album_coverart_100x100':
-			setArt(value)
+		# print '[*] SETTING ', key, value
+		if key == 'Album':
+			self.setAlbum(value)
+		elif key == 'Artist':
+			self.setArtist(value)
+		elif key == 'Track':
+			self.setName(value)
+		elif key == 'Lyrics':
+			self.setLyrics(value)
+		elif key == 'Art':
+			self.setArt(value)
 		else:
 			#DONT KNOW WHAT TO DO
-			pass
+			print 'NOTHING!!!'
 
 	def setName(self, name):
 		'''
@@ -88,12 +96,12 @@ class Song(object):
 	def getName():
 		self.name = name
 	def getArtist():
-			self.artist = artist
+		self.artist = artist
 	def getAlbum():
-			self.album = album
+		self.album = album
 	def getLyrics():
-			self.lyrics= lyrics
+		self.lyrics= lyrics
 	def getArt():
-			self.art = art
+		self.art = art
 	def getYear():
-			self.year = year
+		self.year = year

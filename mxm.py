@@ -5,7 +5,7 @@ import sys
 import track as TRACK
 import artist as ARTIST
 import tracking as TRACKING
-import Song
+from Song import *
 
 WANTED_KEYS = {'album_name':'Album', 'track_name':'Track', 'artist_name':'Artist'}
 TRACK_KEYS = ['album_name', 'album_id', 'track_name', 'track_id', 'artist_name', 'artist_id', 'lyrics_id', 'album_coverart_100x100']
@@ -15,8 +15,9 @@ def makeSong(artist, name):
 	songs = searchInfo(artist, name)
 	songInfo = getInfo(songs[0])
 	song = Song()
-	for key in songInfo:
+	for key in songInfo.keys():
 		song.setWhatever(key, songInfo.get(key))
+	# print '[*] AFTER SETTING', song
 	return song
 
 
@@ -35,19 +36,19 @@ def getInfo(song, nice=True):
 	'''
 		Input:	Track song - the song to display the info for
 				boolean nice - if true: human readable/minimal
-		Output:	print only usefull info to screen
+		Output:	dictionary with only useful info
 	'''
 	tion = song.__dict__
 	info = {}
 	if nice:
 		for key in WANTED_KEYS:
-			info.put(WANTED_KEYS.get(key), tion.get(key))
+			info[WANTED_KEYS.get(key)] = tion.get(key)
 			# print WANTED_KEYS.get(key), '\t:', tion.get(key)
 	else:
 		for key in TRACK_KEYS:
-			info.put(key, tion.get(key))
+			info[key] = tion.get(key)
 			# print key, '\t\t', tion.get(key)
-	# print
+	# print '[*] SONG INFO >>> ', info
 	return info
 
 def showAllInfo(song):
