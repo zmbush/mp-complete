@@ -15,7 +15,7 @@ def hello():
 
 @app.route('/andre')
 def helloAndre():
-  tracks = TRACK.search(q="Distured In The Fire")
+  tracks = TRACK.search(q='Rick Astley Never Gonna Give You Up')
   for k in range(min(3, len(tracks))):
     print tracks[k]
  #/return "Hello MEEEEE!"
