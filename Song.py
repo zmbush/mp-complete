@@ -82,9 +82,9 @@ class Song(object):
 		'''
 		String year
 		'''
-			self.year = year
+		self.year = year
 
-'''GETTERS'''
+	'''GETTERS'''
 	def getName():
 		self.name = name
 	def getArtist():
