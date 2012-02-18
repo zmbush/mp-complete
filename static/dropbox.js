@@ -15,7 +15,8 @@ function noopHandler(evt){
 function drop(evt){
   evt.stopPropagation();
   evt.preventDefault();
-
+  
+  $('#upload-area').html('Uploading')
   var files = evt.dataTransfer.files;
   var count = files.length
 
@@ -24,6 +25,7 @@ function drop(evt){
 }
 
 function handleFiles(files){
+  $('#upload-area').append('.')
   for(var i = 0; i < files.length; i++){
     file = files[i]
      
@@ -33,6 +35,7 @@ function handleFiles(files){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/file_upload", true);
     xhr.onreadystatechange = function(){
+      $('#upload-area').append('.')
       if(xhr.readyState == 4){
         text = xhr.responseText
         as = text.split(',')

@@ -2,15 +2,28 @@
 <title>MP-Complete</title>
 <head>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/smoothness/jquery-ui-1.8.17.custom.css') }}">
 <script src="{{ url_for('static', filename='dropbox.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery-ui-1.8.17.custom.min.js') }}"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+$(function(){
+  $('.page').hide().fadeIn('slow');
+});
+</script>
 </head>
 <body onLoad="hookDropbox()">
 <div class='page'>
   <div class="banner" >
+    <h1>MP-Complete</h1>
+    <h3>Fix your music's metadata</h3>
   </div>
-
+  <div id="upload-area">
+  </div>
+  <div class="main">
   <div id='dropbox'>
+  Drop your music files here to upload them!
+  </div>
   </div>
 </div>
 </body>
