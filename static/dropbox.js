@@ -47,7 +47,7 @@ function handleFiles(files){
           $('#upload').hide()
           as = text.split(',')
           // document.location.href = '/echo_id/' + text
-          location.href = "/bridge/" + as[0] + "/" + as[1] + '/' + as[2]
+          location.href = "/bridge/" + escape(as[0]) + "/" + escape(as[1]) + '/' + escape(as[2])
           // $(".page").append("<a href=\"" + xhr.responseText + "\">Download</a>")
         }
         break;
