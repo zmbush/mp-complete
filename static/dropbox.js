@@ -50,6 +50,7 @@ function handleFiles(files){
           request_url = "/bridge/" + escape(as[0]) + "/" + escape(as[1]) + '/' + escape(as[2])
           $.ajax({
             url: request_url,
+            method: 'GET',
             type: 'json',
             success: function(text){
               alert(text.status)
