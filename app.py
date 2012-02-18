@@ -14,9 +14,7 @@ def helloAndre():
 
 @app.route('/dropbox')
 def dropboxPage():
-  retval = "<html>"
-  retval += "</html>"
-  return retval
+  return render_template('dropbox.html', error=error)
 
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
