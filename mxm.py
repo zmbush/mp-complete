@@ -6,7 +6,7 @@ import musixmatch.track as TRACK
 import musixmatch.artist as ARTIST
 import musixmatch.tracking as TRACKING
 from Song import Song
-import musixmatch.lyrics as LYRICS
+import lyrics as LYRICS
 
 
 # WANTED_KEYS = {'album_name':'Album', 'track_name':'Track', 'artist_name':'Artist'}
