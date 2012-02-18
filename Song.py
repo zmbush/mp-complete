@@ -102,15 +102,15 @@ class Song(object):
 		self.year = year
 
 	'''GETTERS'''
-	def getName():
+	def getName(self):
 		return self.name
-	def getArtist():
+	def getArtist(self):
 		return self.artist
-	def getAlbum():
+	def getAlbum(self):
 		return self.album
-	def getLyrics():
+	def getLyrics(self):
 		return self.lyrics
-	def getArt():
+	def getArt(self):
 		return self.art
-	def getYear():
+	def getYear(self):
 		return self.year
