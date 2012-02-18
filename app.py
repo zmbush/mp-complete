@@ -4,6 +4,7 @@ import logging
 import werkzeug
 import urllib2
 import urllib
+import subprocess
 from mxm import *
 from Song import *
 
@@ -48,6 +49,8 @@ def recieveDroppedFile():
   url = 'http://developer.echonest.com/api/v4/track/upload?api_key=' + API_KEY
   data = 'url=http://mp-complete.herokuapp.com/uploads/' + filename +          \
   "&wait=false"
+  print subprocess.check_output(['curl', '-F', "api_key=" + API_KEY,  '-F', 'track=@' + path,
+  '-F', 'filetype=m4a', 'http://developer.echonest.com/api/v4/track/upload"'])
   print "Sending request to:", url
   print "With data:", data
   page = urllib2.urlopen(url, data).read()
