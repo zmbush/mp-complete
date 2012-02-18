@@ -16,9 +16,6 @@ function drop(evt){
   evt.stopPropagation();
   evt.preventDefault();
   
-  $('#upload-area').progressbar({
-    value: 25
-  })
   var files = evt.dataTransfer.files;
   var count = files.length
 
@@ -29,6 +26,7 @@ function drop(evt){
 function handleFiles(files){
   for(var i = 0; i < files.length; i++){
     file = files[i]
+    $('#upload-area').append("<div id='upl" + i + "'>Uploading: " + file.name + '</div>')
      
     // begin the read operation
     var fd = new FormData();
@@ -38,19 +36,10 @@ function handleFiles(files){
     xhr.onreadystatechange = function(){
       switch(xhr.readyState){
         case 1:
-          $('#upload-area').progressbar({
-            value: 50
-          })
           break;
         case 2:
-          $('#upload-area').progressbar({
-            value: 75
-          })
           break;
         case 3:
-          $('#upload-area').progressbar({
-            value: 100
-          })
           break;
         case 4:
           text = xhr.responseText
@@ -58,7 +47,7 @@ function handleFiles(files){
           // document.location.href = '/echo_id/' + text
           document.location.href = "/bridge/" + as[0] + "/" + as[1] + '/' + as[2]
           // $(".page").append("<a href=\"" + xhr.responseText + "\">Download</a>")
-          $('#upload-area').progressbar({ enabled : false })
+          $('#upl' + i).hide()
           break;
       }
       if(xhr.readyState == 4){
