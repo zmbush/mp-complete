@@ -1,6 +1,6 @@
 import urllib
 import urllib2
-import BeautifulSoup.BeautifulSoup
+import bs.BeautifulSoup
 import json
 
 
