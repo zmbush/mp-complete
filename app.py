@@ -47,8 +47,10 @@ def recieveDroppedFile():
   values = {'api_key' : API_KEY,
           'url' : 'http://mp-complete.herokuapp.com/uploads' + filename }
   data = urllib.urlencode(values)
-  page = urllib2.urlopen(url, data)
-  return page.read()
+  page = urllib2.urlopen(url, data).read()
+  
+  print page
+  return page
   return '/uploads/' + filename
 
 
