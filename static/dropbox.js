@@ -34,7 +34,8 @@ function handleFiles(files){
     xhr.open("POST", "/file_upload", true);
     xhr.onreadystatechange = function(){
       if(xhr.readyState == 4){
-        $(".page").append("<a href=\"" + xhr.responseText + "\">Download</a>")
+        alert(xhr.responseText)
+        // $(".page").append("<a href=\"" + xhr.responseText + "\">Download</a>")
       }
     }
     xhr.send(fd);
