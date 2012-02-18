@@ -72,6 +72,7 @@ def isoLyrics(url):
 	startI = j.find(beg)
 	endI = j.find(end)
 	lyrics = j[startI+len(beg):endI]
+	lyrics = lyrics.strip()
 
 	return lyrics
 
