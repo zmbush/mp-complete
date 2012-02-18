@@ -7,12 +7,14 @@ def updateFile(filename, song):
 	tag = eyeD3.Tag()
 	try:
 		tag.link(filename)
+		updateLyrics(tag, song.getLyrics())
+		updateName(tag, song.getName())
+		updateArtist(tag, song.getArtist())
+		updateAlbum(tag, song.getAlbum())
 	except TypeError:
 		return False
-	updateLyrics(tag, song.getLyrics())
-	updateName(tag, song.getName())
-	updateArtist(tag, song.getArtist())
-	updateAlbum(tag, song.getAlbum())
+	except eyeD3.tag.TagException:
+		return False
 
 def updateLyrics(tag, lys):
 	tag.addLyrics(lys)
