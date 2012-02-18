@@ -5,14 +5,33 @@ import sys
 import track as TRACK
 import artist as ARTIST
 import tracking as TRACKING
-from Song import *
+from Song import Song
+from lyrics import findLyrics
 
-WANTED_KEYS = {'album_name':'Album', 'track_name':'Track', 'artist_name':'Artist'}
-TRACK_KEYS = ['album_name', 'album_id', 'track_name', 'track_id', 'artist_name', 'artist_id', 'lyrics_id', 'album_coverart_100x100']
-SONG_KEYS = ['album_name', 'track_name', 'artist_name', 'lyrics']
+
+# WANTED_KEYS = {'album_name':'Album', 'track_name':'Track', 'artist_name':'Artist'}
+
+ALBUM_NAME = 'album_name'
+ALBUM_ID = 'album_id'
+TRACK_ID = 'track_id'
+TRACK_NAME = 'track_name'
+ARTIST_NAME = 'artist_name'
+ARTIST_ID = 'artist_id'
+LYRICS_ID = 'lyrics_id'
+ALBUM_ART = 'album_coverart_100x100'
+
+
+TRACK_KEYS = [ALBUM_NAME, ALBUM_ID, TRACK_NAME, TRACK_ID, ARTIST_NAME, ARTIST_ID, LYRICS_ID, ALBUM_ART]
+
+SONG_KEYS = [ALBUM_NAME, TRACK_NAME, ARTIST_NAME, LYRICS_ID, ALBUM_ART]
 
 def makeSong(artist, name):
-	songs = searchInfo(artist, name)
+	'''
+	Call 'searchQuery
+			getInfo
+		and setWhatever
+	'''
+	songs = searchQuery(artist, name)
 	songInfo = getInfo(songs[0])
 	song = Song()
 	for key in songInfo.keys():
@@ -21,7 +40,7 @@ def makeSong(artist, name):
 	return song
 
 
-def searchInfo(artist, name):
+def searchQuery(artist, name):
 	'''
 	Search for a song given the artist name and track name.
     Input:  String artist - artist name to search for
@@ -32,24 +51,32 @@ def searchInfo(artist, name):
 	songs = TRACK.search(q=searchStr)
 	return songs
 
-def getInfo(song, nice=True):
+def getInfo(song):
 	'''
-		Input:	Track song - the song to display the info for
-				boolean nice - if true: human readable/minimal
+		Input:	Track song - the Track to display the info for
 		Output:	dictionary with only useful info
 	'''
-	tion = song.__dict__
+	data = song.__dict__
 	info = {}
-	if nice:
-		for key in WANTED_KEYS:
-			info[WANTED_KEYS.get(key)] = tion.get(key)
-			# print WANTED_KEYS.get(key), '\t:', tion.get(key)
-	else:
-		for key in TRACK_KEYS:
-			info[key] = tion.get(key)
-			# print key, '\t\t', tion.get(key)
+	for key in SONG_KEYS:
+		# if key == 'lyrics_id':
+			# info[key] = song.lyrics()
+			# break;
+		info[key] = data.get(key)
+		# print key, '\t\t', data.get(key)
 	# print '[*] SONG INFO >>> ', info
+	setLyrics(info)
+
 	return info
+
+def setLyrics(info):
+	artist = info[ARTIST_NAME]
+	name = info[TRACK_NAME]
+	lyrics = findLyrics(artist, name)
+	info[LYRICS_ID] = lyrics
+
+def getLyrics(track):
+	return track.lyrics()
 
 def showAllInfo(song):
 	'''
@@ -61,19 +88,47 @@ def showAllInfo(song):
 	info = {}
 
 	for k in keys:
-		info.put(k, tion.get(k))
+		info[k] = tion.get(k)
 		# print k, '\t', tion.get(k)
 	# print
 	return info
 
+def showKeys(song):
+	for key in song.__dict__:
+		print key
+
+
 if __name__ == "__main__":
 	print 'DOING STUFF!!! :)'
-	ts = searchTrack('Disturbed', 'Criminal')
-	for s in ts:
-		# showInfo(s, False)
-		showAll(s)
+	ts = searchQuery('Disturbed', 'Criminal')
+	# for s in ts:
+	# 	# showInfo(s, False)
+	# 	showAll(s)
 
 	# for s in ts:
 	# 	print str(s)
-	# print(ts[0].__dict__)
+	print(ts[0])	
 
+"""
+NOTES
+
+
+{'track_length'				: 256,
+'album_name'				: u'Indestructible',
+'album_coverart_350x350'	: u'',
+'track_mbid'				: u'167e0e87-4631-4c34-bec4-5ce8d6e2b7c7',
+'album_id'					: 13944839,
+'track_name'				: u'Criminal',
+'album_coverart_100x100'	: u'http://api.musixmatch.com/images/albums/9/6/4/1/9/6/11691469.jpg',
+'artist_name'				: u'Disturbed',
+'track_id'					: 16262847,
+'instrumental'				: 0,
+'lyrics_id'					: 2848843,
+'subtitle_id'				: 0,
+'artist_mbid'				: u'4bb4e4e4-5f66-4509-98af-62dbb90c45c5',
+'track_rating'				: 100,
+'album_coverart_500x500'	: u'',
+'artist_id'					: 142,
+'album_coverart_800x800'	: u''}
+
+"""
