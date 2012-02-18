@@ -45,7 +45,7 @@ def makeSong(artist, name):
 	return song
 
 def IDSong(echoID):
-	print '[*] >>> ID:', echoID
+	# print '[*] >>> ID:', echoID
 
 	try:
 		track = TRACK.Track(echoID, echonest=True)
@@ -89,7 +89,7 @@ def getInfo(song):
 	
 	setLyrics(info)
 	# info[TRACK_NAME] = clean(info, TRACK_NAME)
-	print '[*] >>> INFO:', info
+	# print '[*] >>> INFO:', info
 
 	return info
 

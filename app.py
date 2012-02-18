@@ -71,7 +71,7 @@ def bridgeTheGap(artist, song, filename):
 def rename(filename, newName):
   path = filename.split('/')
   path[-1] = newName + '.mp3'
-  newfilename = ''.join(path)
+  newfilename = ''.join(path).replace(' ', '_')
   print 'NEWFILENAME:', newfilename
   os.rename(filename, newfilename)
   return newfilename
