@@ -57,8 +57,11 @@ if __name__ == '__main__':
     # get a list of tracks from a search
     tracks = TRACK.search(q='Rick Astley Never Gonna Give You Up')
     print '********** LIST OF TRACKS ACQUIRED ************'
-    for k in range(min(3,len(tracks))):
-        print tracks[k]
+    # for k in range(min(3,len(tracks))):
+        # print tracks[k]
+    print tracks[0]
+    handle = open("track.txt", 'w')
+    handle.write(str(tracks[0]))
 
     # get a list of tracks from charts
     tracks = TRACK.chart()
