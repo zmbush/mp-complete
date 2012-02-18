@@ -90,7 +90,7 @@ def getInfo(song):
 	return info
 
 def rmParends(info):
-	name = info[track_name]
+	name = info[TRACK_NAME]
 	cleanName = []
 	flag = True
 	for c in name:
