@@ -24,7 +24,9 @@ def helloAndre():
 @app.route('/dropbox')
 def dropboxPage():
   print "boo"
+  error = None
   returnVal = flask.render_template('dropbox.html', error=error)
+  return returnVal
 
 
 if __name__ == '__main__':
