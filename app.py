@@ -50,6 +50,10 @@ def recieveDroppedFile():
   retval = [newTrack.artist, newTrack.title]
   return ','.join(retval)
 
+@app.route('/bridge/<artist>/<song>')
+def bridgeTheGap(artist, song):
+  song = makeSong(artist, song)
+  return str(song).replace("\n", "<br />")
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
