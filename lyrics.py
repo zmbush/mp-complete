@@ -1,4 +1,4 @@
-import urllib2
+import urllib
 
 def findLyrics(artist, song):
 	html = getHTML(artist, song)
@@ -11,7 +11,7 @@ endtag = '<!-- end of lyrics -->'
 
 def getHTML(artist, song):
 	azurl = makeURL(artist, song)
-	html = urllib2.urlopen(azurl)
+	html = urllib.urlopen(azurl)
 	html = html.read()
 	return html
 
@@ -48,7 +48,7 @@ def unHTMLize(htly):
 	return ''.join(lyrics)
 
 if __name__ == '__main__':
-	html = getHTML('My Chemical Romance', 'Welcome To The Black Parade')
+	html = getHTML('Disturbed', 'Criminal')
 	htly = isoLyrics(html)
 	lyrics = unHTMLize(htly)
 	print lyrics
