@@ -7,11 +7,27 @@ def updateFile(filename, song):
 	tag = eyeD3.Tag()
 	tag.link(filename)
 	updateLyrics(tag, song.getLyrics())
+	updateName(tag, song.getName())
+	updateArtist(tag, song.getArtist())
+	updateAlbum(tag, song.getAlbum())
 
 def updateLyrics(tag, lys):
 	tag.addLyrics(lys)
 	tag.update()
 	return True
+def updateName(tag, name):
+	tag.setTitle(name)
+	tag.update()
+	return True
+def updateArtist(tag, artist):
+	tag.setArtist(artist)
+	tag.update()
+	return True
+def updateAlbum(tag, album):
+	tag.setAlbum(album)
+	tag.update()
+	return True
+
 
 
 
