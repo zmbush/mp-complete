@@ -47,8 +47,8 @@ def recieveDroppedFile():
   file.save(path)
   flask.redirect(flask.url_for('uploaded_file', filename=filename))
   newTrack = track.track_from_filename(path)
-  return str(newTrack)
-  return '/uploads/' + filename
+  retval = [newTrack.artist, newTrack.title]
+  return ','.join(retval)
 
 
 @app.route('/uploads/<filename>')
