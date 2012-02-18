@@ -80,14 +80,14 @@ def getInfo(song):
 	data = song.__dict__
 	info = {}
 	for key in SONG_KEYS:
-		if key == LYRICS_ID:
-			info[key] = getLyrics(song)
-			break;
+		# if key == LYRICS_ID:
+		# 	info[key] = getLyrics(song)
+		# 	break;
 		info[key] = data.get(key)
 		# print key, '\t\t', data.get(key)
 	# print '[*] SONG INFO >>> ', info
 	
-	# setLyrics(info)
+	setLyrics(info)
 	# info[TRACK_NAME] = clean(info, TRACK_NAME)
 	print '[*] >>> INFO:', info
 
