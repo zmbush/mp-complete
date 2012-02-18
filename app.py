@@ -1,12 +1,11 @@
 import os
 import flask
 import logging
+import mxm
+import Song
 
 app = flask.Flask(__name__)
 import sys
-import track as TRACK
-import artist as ARTIST
-import tracking as TRACKING
 
 
 @app.route('/')
@@ -15,11 +14,14 @@ def hello():
 
 @app.route('/andre')
 def helloAndre():
-  tracks = TRACK.search(q='Rick Astley Never Gonna Give You Up')
-  for k in range(min(3, len(tracks))):
-    print tracks[k]
+  # tracks = TRACK.search(q='Rick Astley Never Gonna Give You Up')
+  # for k in range(min(3, len(tracks))):
+  #   print tracks[k]
  #/return "Hello MEEEEE!"
-  return str(tracks)
+  # return str(tracks)
+  song = makeSong('Disturbed', 'Criminal')
+  return str(song)
+
 
 @app.route('/dropbox')
 def dropboxPage():
