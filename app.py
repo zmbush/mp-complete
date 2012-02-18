@@ -1,4 +1,5 @@
 import os
+import time
 import flask
 import logging
 import werkzeug
@@ -16,7 +17,7 @@ from echonest import track
 app = flask.Flask(__name__)
 app.debug = True
 flask.use_debugger = True
-app.config['UPLOAD_FOLDER'] = '/tmp/'
+app.config['UPLOAD_FOLDER'] = '/upload/'
 import sys
 
 
@@ -46,6 +47,10 @@ def dropboxPage():
 
 @app.route('/file_upload', methods=['GET', 'POST'])
 def recieveDroppedFile():
+  try:
+    os.mkdir(app.config['UPLOAD_FOLDER'])
+  except:
+    pass
   file = flask.request.files['uploaded_file']
   filename = werkzeug.secure_filename(file.filename) 
   path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
