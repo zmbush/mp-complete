@@ -51,6 +51,7 @@ class Song(object):
 			setArt(value)
 		else:
 			#DONT KNOW WHAT TO DO
+			pass
 
 	def setName(self, name):
 		'''
