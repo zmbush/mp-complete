@@ -26,16 +26,12 @@ function drop(evt){
 function handleFiles(files){
   for(var i = 0; i < files.length; i++){
     file = files[i]
-    var reader = new FileReader();
      
-     // init the reader event handlers
-     reader.onload = handleReaderLoad;
-     // begin the read operation
-     reader.readAsDataURL(file);
+    // begin the read operation
+    var fd = new FormData();
+    fd.append("uploaded_file", file);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/file_upload");
+    xhr.send(fd);
   }
-}
-
-function handleReaderLoad(evt){
-
-  alert(evt.target.result);
 }
