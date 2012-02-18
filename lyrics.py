@@ -1,4 +1,4 @@
-import urllib
+import urllib2
 
 def findLyrics(artist, song):
 	html = getHTML(artist, song)
@@ -11,7 +11,7 @@ endtag = '<!-- end of lyrics -->'
 
 def getHTML(artist, song):
 	azurl = makeURL(artist, song)
-	html = urllib.urlopen(azurl)
+	html = urllib2.urlopen(azurl)
 	html = html.read()
 	return html
 
