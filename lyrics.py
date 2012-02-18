@@ -48,7 +48,7 @@ def unHTMLize(htly):
 	return ''.join(lyrics)
 
 if __name__ == '__main__':
-	html = getHTML('My Chemical Romance', 'Welcome To The Black Parade')
+	html = getHTML('Disturbed', 'Criminal')
 	htly = isoLyrics(html)
 	lyrics = unHTMLize(htly)
 	print lyrics
