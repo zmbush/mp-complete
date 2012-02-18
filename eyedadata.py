@@ -12,9 +12,11 @@ def updateFile(filename, song):
 		updateArtist(tag, song.getArtist())
 		updateAlbum(tag, song.getAlbum())
 	except TypeError as e:
+		return e
 		print '[*] >>> TypeError', e
 		return False
 	except eyeD3.tag.TagException as f:
+		return f
 		print '[*] >>> TagException', f
 		return False
 
