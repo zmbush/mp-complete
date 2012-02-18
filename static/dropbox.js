@@ -55,7 +55,7 @@ function handleFiles(files){
             success: function(text){
               if(text.status == "error"){
                 alert(text.message)
-              else{
+              }else{
                 document.location.href = text.message;
               }
             }
