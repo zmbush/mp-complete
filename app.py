@@ -73,7 +73,8 @@ def rename(filename, newName):
   path[-1] = newName + '.mp3'
   newfilename = ''.join(path).replace(' ', '_')
   print 'NEWFILENAME:', newfilename
-  os.rename(filename, newfilename)
+  os.rename(app.config['UPLOAD_FOLDER'] + filename,
+    app.config['UPLOAD_FOLDER'] + newfilename)
   return newfilename
 
 
