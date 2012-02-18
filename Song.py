@@ -37,7 +37,7 @@ class Song(object):
 		data[10] = 'Lyrics:\n'
 		data[11] = (lyrics + '\n')
 
-'''SETTERS'''
+	'''SETTERS'''
 	def setWhatever(self, key, value):
 		if key == 'album_name':
 			setAlbum(value)
