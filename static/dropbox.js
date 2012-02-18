@@ -45,17 +45,10 @@ function handleFiles(files){
           text = xhr.responseText
           as = text.split(',')
           // document.location.href = '/echo_id/' + text
-          document.location.href = "/bridge/" + as[0] + "/" + as[1] + '/' + as[2]
+          window.open("/bridge/" + as[0] + "/" + as[1] + '/' + as[2])
           // $(".page").append("<a href=\"" + xhr.responseText + "\">Download</a>")
           $('#upl' + i).hide()
           break;
-      }
-      if(xhr.readyState == 4){
-        text = xhr.responseText
-        as = text.split(',')
-        // document.location.href = '/echo_id/' + text
-        document.location.href = "/bridge/" + as[0] + "/" + as[1] + '/' + as[2]
-        // $(".page").append("<a href=\"" + xhr.responseText + "\">Download</a>")
       }
     }
     xhr.send(fd);
