@@ -61,7 +61,7 @@ def bridgeTheGap(artist, song, filename):
   print "Song: " + song
   song = makeSong(artist, song)
   path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-  if not eyedadata.updateFile(path, song)
+  if not eyedadata.updateFile(path, song):
     print "SOMETHING WENT WRONG :("
   # print "FILENAME: " + filename
   filename = rename(filename, song.getName())
