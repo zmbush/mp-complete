@@ -49,9 +49,21 @@ def recieveDroppedFile():
   file.save(path)
   flask.redirect(flask.url_for('uploaded_file', filename=filename))
   newTrack = track.track_from_filename(path)
+  return newTrack.id
   retval = [newTrack.artist, newTrack.title]
   return ','.join(retval)
 
+@app.route('/bridge/<artist>/<song>')
+def bridgeTheGap(artist, song):
+  print "Artist: " + artist
+  print "Song: " + song
+  song = makeSong(artist, song)
+  return str(song).replace("\n", "<br />")
+
+@app.route('/echo_id/<id>')
+def bridgeEchoId(id):
+  song = makeSong(echoID = id)
+  return song.htmlStr()
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
