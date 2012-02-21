@@ -21,9 +21,9 @@ app.config['UPLOAD_FOLDER'] = '~/'
 import sys
 
 
-@app.route('/')
-def hello():
-  return '<a href="dropbox">Drag and Drop test</a><br /><a href="andre">Andre\'s code</a>'
+#@app.route('/')
+#def hello():
+  #return '<a href="dropbox">Drag and Drop test</a><br /><a href="andre">Andre\'s code</a>'
 
 @app.route('/andre')
 def helloAndre():
@@ -38,7 +38,7 @@ def helloAndre():
   return ":("
 
 
-@app.route('/dropbox')
+@app.route('/')
 def dropboxPage():
   error = None
   returnVal = flask.render_template('dropbox.html', error=error)
