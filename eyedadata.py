@@ -1,8 +1,6 @@
 from eyeD3 import *
 import eyeD3.tag as TAG
 	
-# FILENAME = "Z:\\Andre Crabb\\Music\\iTunes\\iTunes Music\\Paper Tongues\\Ride To California\\01 Ride To California.mp3"
-
 def updateFile(filename, song):
 	tag = eyeD3.Tag()
 	try:
