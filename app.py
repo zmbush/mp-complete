@@ -13,13 +13,11 @@ from mxm import *
 from Song import *
 from echonest import track
 
-
 app = flask.Flask(__name__)
 app.debug = True
 flask.use_debugger = True
 app.config['UPLOAD_FOLDER'] = '~/'
 import sys
-
 
 #@app.route('/')
 #def hello():
